@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Phone number</th>
+                    <th>location</th>
+                    <th>Total</th>
+                </tr>
+                
+                
+                
+            </thead>
+
+            <tbody>
+
+                {%for order in orders %}
+                    <tr>
+                        <td><a href = ' {% url "orders:order_details" order.id %}' >
+                            {{order.customer_name | title}}
+                        </a></td>
+                        <td>{{order.customer_phone}}</td>
+                        <td> {{order.address}} </td>
+                        <td> {{order.total_order}} </td>
+                        
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+{% endblock content %}

@@ -1,53 +1,29 @@
 {% extends 'base.html' %}
-<script src="https://unpkg.com/htmx.org@1.7.0"></script>
-
 
 {% block content %}
 
-  
-<form method = 'POST'>
+<form method="POST">
+
     {%csrf_token%}
 
-    {% for field in order %}
-    <label>{{field.label}}</label>
-    <div name="fields">
-        <p>
-            {{field}}
-        </p>
+    {% for field in form %}
+        <label>{{field.label}}</label>
+        <div name="fields">
+            <p>
+                {{field}}
+            </p>
+            
+        </div>
+
         
-    </div>
     
 
     {% endfor %}
 
-
-     <button hx-get="{% url 'form-item' %}" hx-swap= "beforeend" hx-target="#itemforms" name="itemforms">
-        add new item
-    </button>
-
-    <button hx-delete="{% url 'form-item' %}" hx-swap="innerHTML" hx-target="#itemforms">
-        delete item
-    </button>
+    <button type="submit">create order</button>
 
 
-    <div id="itemforms" >
-
-    </div >
-
-    
-
-    <button>
-        add order
-    </button>
 </form>
 
-   
 
 {% endblock content %}
-
-   
-
-
-
-
-

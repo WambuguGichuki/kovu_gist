@@ -2,9 +2,14 @@
 
 {%block content%}
 
-<form method = 'POST' name="forms">
-    {%csrf_token%}
-    {{form}}
-</form>
+<!-- <div hx-target="this" hx-swap="outerHTML"> -->
+
+    <form method="POST">
+        {%csrf_token%}
+        {{form}}
+    </form>
+
+<!-- </div> -->
+
 
 {%endblock content%}

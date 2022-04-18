@@ -26,34 +26,38 @@ class ProductList(ListView):
     context_object_name = "products"
 
 
-def createorder(request):
-    form = OrderItemForm()
-    fields = request.GET.get('fields')
-    # print(fields)
-
-    # if request.method == "POST":
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect("order_list")
+class CreateOrder(CreateView):
+    model = Order
+    form_class = OrderForm 
+    template_name = "orders/create-order.html"
 
 
-    context = {"form":form,"order":OrderForm}
-
-    return render(request,"orders/create-order.html",context)
+    
 
 
 
+def create_item(request):
+    
+    form = OrderItemForm(request.POST or None)
+
+    if request.method == "POST":
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.save()
+            return redirect("order_list")
+
+    context = {"form":form}
+
+    return render(request,"orders/create-order-item.html",context)
+
+    
+    
 
 def create_item_form(request):
     context = {"form":OrderItemForm()}
 
-    form = request.GET.get('forms')
-    print(form)
-
 
     return render(request,"orders/partials/new-items.html",context)
-
-
 
 # class OrderCreate(CreateView):
 #     model = Order

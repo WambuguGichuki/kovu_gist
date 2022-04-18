@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
@@ -23,7 +23,7 @@
 
                 {%for order in orders %}
                     <tr>
-                        <td><a href = ' {% url "orders:order_details" order.id %}' >
+                        <td><a href = ' {% url "orders:order-details" order.id %}' >
                             {{order.customer_name | title}}
                         </a></td>
                         <td>{{order.customer_phone}}</td>

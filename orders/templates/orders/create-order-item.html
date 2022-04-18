@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+<script src="https://unpkg.com/htmx.org@1.7.0"></script>
+
+
+{% block content %}
+
+  
+<form method = 'POST'>
+    {% csrf_token %}
+
+
+
+
+
+    <button hx-get="{% url 'form-item' %}" hx-swap= "beforeend" hx-target="#itemforms" name="itemforms">
+        add new item
+    </button>
+
+    <button hx-delete="{% url 'form-item' %}" hx-swap="innerHTML" hx-target="#itemforms">
+        delete item
+    </button>
+
+
+    <div id="itemforms" >
+
+    </div >
+
+    
+
+    <button type="submit">
+        add order items
+    </button>
+</form>
+
+   
+
+{% endblock content %}
+
+   
+
+
+
+
+
